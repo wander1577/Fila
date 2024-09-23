@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Elemento{
+	int valor;
+	struct Elemento *prox;
+}Elemento;
+
+
+typedef struct{
+    struct Elemento *inicio;
+    struct Elemento *fim;
+}Fila;
+
+void insere_elemento(Fila *fi, int val){
+    Elemento *novo = malloc(sizeof(Elemento));
+    novo->valor = val;
+    novo->prox = NULL;
+    if(fi->inicio == NULL){
+        fi->inicio = novo;
+    }else{
+        fi->fim->prox = novo;
+    }
+
+    fi->fim = novo;
+}
+
+void remove_elemento(Fila *fi, Elemento *e){
+    if(fi->inicio){
+        e = fi->inicio;
+        fi->inicio = fi->inicio->prox;
+        free(e);
+    }else{
+        printf("Fila vazia");
+    }
+
+    void passar_elemento-para-outra(fila *f1, fila *f2);
+}
+
+void esvazia_fila(Fila *fi){         //Primeira questão da prova ..
+    while(fi->inicio){
+        remove_elemento(fi, fi->inicio);
+    }
+}
+
+void imprime_fila(Elemento *e){
+    if(e){
+        printf("\nElemento: %d\n", e->valor);
+        imprime_fila(e->prox);
+    }
+}
+
+int main(){
+    Fila fi;
+    fi.inicio = NULL;
+    fi.fim = NULL;
+
+    insere_elemento(&fi, 10);
+    insere_elemento(&fi, 20);
+    insere_elemento(&fi, 30);
+
+    imprime_fila(fi.inicio);
+
+}
+
